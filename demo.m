@@ -1,74 +1,63 @@
-load noisy.mat
+clear all
+close all
 
-% inputs
-sample_face_1 = reshape(X(:,1),20,28)
-sample_face_2 = reshape(X(:,120),20,28)
-sample_face_3 = reshape(X(:,250),20,28)
-sample_face_4 = reshape(X(:,302),20,28)
-display_1 = rot90(sample_face_1,-1)
-display_2 = rot90(sample_face_2,-1)
-display_3 = rot90(sample_face_3,-1)
-display_4 = rot90(sample_face_4,-1)
+load noisy
 
-% PC1
-pcs_1 = pca(X)
-Y = X*pcs_1
-pc_1 = reshape(Y(:,1),20,28)
-pc_2 = reshape(Y(:,2),20,28)
-pc_3 = reshape(Y(:,3),20,28)
-pc_4 = reshape(Y(:,100),20,28)
-display_1r = rot90(pc_1,-1)
-display_2r = rot90(pc_2,-1)
-display_3r = rot90(pc_3,-1)
-display_4r = rot90(pc_4,-1)
+[Xh U Y gamma] = mypca(X, 2)
 
-% PC2 
-t_X = X(:,120:1965)
-pcs_2 = pca(t_X)
-Z = t_X*pcs_2
-pc = reshape(Z(:,1),20,28)
-display = rot90(pc,-1)
+% compute 5 random indices
+index1 = ceil(rand*1965)
+index2 = ceil(rand*1965)
+index3 = ceil(rand*1965)
+index4 = ceil(rand*1965)
+index5 = ceil(rand*1965)
 
-% demo
-figure
-imagesc(display_1)
+% 5 original images
+og1 = reshape(X(:,index1),20,28)'
+og2 = reshape(X(:,index2),20,28)'
+og3 = reshape(X(:,index3),20,28)'
+og4 = reshape(X(:,index4),20,28)'
+og5 = reshape(X(:,index5),20,28)'
+
+% 5 respective reconstructed images
+re1 = reshape(Xh(:,index1),20,28)'
+re2 = reshape(Xh(:,index2),20,28)'
+re3 = reshape(Xh(:,index3),20,28)'
+re4 = reshape(Xh(:,index4),20,28)'
+re5 = reshape(Xh(:,index5),20,28)'
+
+% plot
+subplot(2,5,1)
+imagesc(og1)
 colormap gray
-figure
-imagesc(display_2)
+subplot(2,5,2)
+imagesc(og2)
 colormap gray
-figure
-imagesc(display_3)
+subplot(2,5,3)
+imagesc(og3)
 colormap gray
-figure
-imagesc(display_4)
+subplot(2,5,4)
+imagesc(og4)
 colormap gray
-uiwait
+subplot(2,5,5)
+imagesc(og5)
+colormap gray
 
 
-figure
-imagesc(display_1r)
+subplot(2,5,6)
+imagesc(re1)
 colormap gray
-figure
-imagesc(display_2r)
+subplot(2,5,7)
+imagesc(re2)
 colormap gray
-figure
-imagesc(display_3r)
+subplot(2,5,8)
+imagesc(re3)
 colormap gray
-figure
-imagesc(display_4r)
+subplot(2,5,9)
+imagesc(re4)
 colormap gray
-uiwait
+subplot(2,5,10)
+imagesc(re5)
+colormap gray
 
-figure
-imagesc(display_1)
-colormap gray
-figure
-imagesc(display_1r)
-colormap gray
-figure
-imagesc(display_2)
-colormap gray
-figure
-imagesc(display)
-colormap gray
 uiwait

@@ -2,10 +2,9 @@
 A few of the 560, all 20x28 pixels
 ![](http://i.imgur.com/8afG4Pw.png)
 
-# Principal Components
-1st, 2nd, 3rd and 100th PC
-![](http://i.imgur.com/5rLky0n.png)
+# First 10 principal components
+![](http://i.imgur.com/1IxmqAt.png)
 
 # Reconstructed faces
-2 examples, noised top, denoised bottom
-![](http://i.imgur.com/s6qn3YR.png)
+5 examples, noised top, denoised bottom
+![](http://i.imgur.com/otwmIYn.png)
